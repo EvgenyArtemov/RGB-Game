@@ -1,56 +1,59 @@
 var colors = generateRandomColors(6);
-
 var pickedColor = pickColor();
 var squares = document.querySelectorAll('.square');
 var colorDisplay = document.getElementById('colorDisplay');
 var messageDisplay = document.getElementById('message');
 var headerColor = document.querySelector('h1');
 var resetButton = document.getElementById('resetButton');
-var easyButton = document.getElementById('easyButton');
-var hardButton = document.getElementById('hardButton');
+var gameMode = document.querySelectorAll('.mode');
 var hiddenDiv = document.querySelectorAll('.hide');
-var diff = 6;
+var extraDiv = document.querySelectorAll('.extra');
+var diff = 9;
+
+for(var i = 0; i < 3; i++){
+extraDiv[i].style.display = 'none';
+};
 
 colorDisplay.textContent = pickedColor;
 
-easyButton.addEventListener('click', function(){
-  diff = 3;
-  easyButton.classList.add('selected');
-  hardButton.classList.remove('selected');
-  colors = generateRandomColors(diff);
-  pickedColor = pickColor();
-  colorDisplay.textContent = pickedColor;
-  messageDisplay.textContent = "Let's try...";
-  messageDisplay.classList.remove('green');
-  for(var i = 0; i < diff; i++){
-    //add colors to squares
-    squares[i].style.backgroundColor = colors[i];
-  };
-  for(var i = 0; i < diff; i++){
-    hiddenDiv[i].style.display = 'none';
-  }
+for(var i = 0; i < gameMode.length; i++){
+  gameMode[i].addEventListener('click', function(){
+    gameMode[0].classList.remove('selected');
+    gameMode[1].classList.remove('selected');
+    gameMode[2].classList.remove('selected');
+    this.classList.add('selected');
+    if (this.textContent === 'EASY'){
+      diff = 3;
+      for(var i = 0; i < diff; i++){
+      hiddenDiv[i].style.display = 'none';
+      extraDiv[i].style.display = 'none';
+      }
+    } else if (this.textContent === 'HARD') {
+      diff = 6;
 
-})
+      for(var i = 0; i < diff; i++){
+      hiddenDiv[i].style.display = 'block';
+      };
 
-hardButton.addEventListener('click', function(){
-  diff = 6;
-  hardButton.classList.add('selected');
-  easyButton.classList.remove('selected');
-  colors = generateRandomColors(diff);
-  pickedColor = pickColor();
-  colorDisplay.textContent = pickedColor;
-  messageDisplay.textContent = "Let's try...";
-  messageDisplay.classList.remove('green');
-  for(var i = 0; i < diff; i++){
-    //add colors to squares
-    squares[i].style.backgroundColor = colors[i];
-  };
-  for(var i = 0; i < diff; i++){
-    hiddenDiv[i].style.display = 'block';
-  }
-})
+      for(var i = 0; i < 3; i++){
+      extraDiv[i].style.display = 'none';
+     };
 
-resetButton.addEventListener('click', function(){
+    } else if (this.textContent === 'BEAST'){
+      diff = 9;
+      reset();
+      for(var i = 0; i < 6; i++){
+        hiddenDiv[i].style.display = 'block';
+      };
+      for(var i = 0; i < 3; i++){
+        extraDiv[i].style.display = 'block';
+      };
+    }
+    reset();
+  })
+}
+
+function reset(){
   //generate new colors
   colors = generateRandomColors(diff);
   //new pick colors
@@ -61,14 +64,18 @@ resetButton.addEventListener('click', function(){
   for(var i = 0; i < diff; i++){
     //add colors to squares
     squares[i].style.backgroundColor = colors[i];
+    //change text back
+    resetButton.textContent = 'New Colors';
+    //reset header colors
+    headerColor.style.backgroundColor = 'white';
+    //message reset
+    messageDisplay.textContent = "Let's try...";
+    messageDisplay.classList.remove('green');
   };
-  //change text back
-  resetButton.textContent = 'New Colors';
-  //reset header colors
-  headerColor.style.backgroundColor = 'white';
-  //message reset
-  messageDisplay.textContent = "Let's try...";
-  messageDisplay.classList.remove('green');
+};
+
+resetButton.addEventListener('click', function(){
+  reset();
 })
 
 for(var i = 0; i < diff; i++){
