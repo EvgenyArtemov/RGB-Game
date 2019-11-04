@@ -10,11 +10,12 @@ var hiddenDiv = document.querySelectorAll('.hide');
 var extraDiv = document.querySelectorAll('.extra');
 var diff = 9;
 
+reset();
+
+//hiding extra divs
 for(var i = 0; i < 3; i++){
 extraDiv[i].style.display = 'none';
 };
-
-colorDisplay.textContent = pickedColor;
 
 for(var i = 0; i < gameMode.length; i++){
   gameMode[i].addEventListener('click', function(){
@@ -24,29 +25,24 @@ for(var i = 0; i < gameMode.length; i++){
     this.classList.add('selected');
     if (this.textContent === 'EASY'){
       diff = 3;
-      for(var i = 0; i < diff; i++){
-      hiddenDiv[i].style.display = 'none';
-      extraDiv[i].style.display = 'none';
+      for(var i = 0; i < 3; i++){
+        hiddenDiv[i].style.display = 'none';
+        extraDiv[i].style.display = 'none';
       }
     } else if (this.textContent === 'HARD') {
-      diff = 6;
-
-      for(var i = 0; i < diff; i++){
-      hiddenDiv[i].style.display = 'block';
-      };
+        diff = 6;
 
       for(var i = 0; i < 3; i++){
-      extraDiv[i].style.display = 'none';
+        hiddenDiv[i].style.display = 'block';
+        extraDiv[i].style.display = 'none';
      };
 
     } else if (this.textContent === 'BEAST'){
       diff = 9;
-      reset();
-      for(var i = 0; i < 6; i++){
-        hiddenDiv[i].style.display = 'block';
-      };
+
       for(var i = 0; i < 3; i++){
         extraDiv[i].style.display = 'block';
+        hiddenDiv[i].style.display = 'block';
       };
     }
     reset();
@@ -71,6 +67,7 @@ function reset(){
     //message reset
     messageDisplay.textContent = "Let's try...";
     messageDisplay.classList.remove('green');
+    messageDisplay.classList.remove('red');
   };
 };
 
