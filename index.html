@@ -5,21 +5,30 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Color Game</title>
+  <link href="https://fonts.googleapis.com/css?family=Baloo+Bhai&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="master.css">
 </head>
 <body>
-  <h2>The RGB Color Game</h2>
-  <h1 id="colorDisplay">RGB</h1>
-  <h2></h2>
-  <div class="status">
+  <div class="sticky">
+    <h2>The RGB Color Game</h2>
+    <section class="score">
+    score <br>
+    <span id="scoreRight">0</span>
+    :
+    <span id="scoreWrong">0</span>
+  </section>
+    <h1 id="colorDisplay">RGB</h1>
+    <h2></h2>
+    <div class="status">
     <button id="resetButton">New Colors</button>
     <p id="message">Let's try...</p>
     <div class="buttonWrap">
       <button class="mode">EASY</button>
-      <button  class="mode selected">HARD</button>
-      <button class="mode">BEAST</button>
+      <button  class="mode">HARD</button>
+      <button class="mode selected">BEAST</button>
     </div>
+  </div>
   </div>
   <div class="container">
     <div class="square"></div>

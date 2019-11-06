@@ -8,14 +8,14 @@ var resetButton = document.getElementById('resetButton');
 var gameMode = document.querySelectorAll('.mode');
 var hiddenDiv = document.querySelectorAll('.hide');
 var extraDiv = document.querySelectorAll('.extra');
+var scoreRight = 0;
+var scoreWrong = 0;
+var scoreRightDisplay = document.querySelector('#scoreRight');
+var scoreWrongDisplay = document.querySelector('#scoreWrong');
 var diff = 9;
 
 reset();
 
-//hiding extra divs
-for(var i = 0; i < 3; i++){
-extraDiv[i].style.display = 'none';
-};
 
 for(var i = 0; i < gameMode.length; i++){
   gameMode[i].addEventListener('click', function(){
@@ -75,6 +75,7 @@ resetButton.addEventListener('click', function(){
   reset();
 })
 
+
 for(var i = 0; i < diff; i++){
   //add colors to squares
   squares[i].style.backgroundColor = colors[i];
@@ -91,10 +92,14 @@ for(var i = 0; i < diff; i++){
     messageDisplay.classList.add('green');
     headerColor.style.backgroundColor = pickedColor;
     resetButton.textContent = 'Play Again?';
+    scoreRight++;
+    scoreRightDisplay.textContent = scoreRight;
   } else {
     this.style.backgroundColor = 'white';
     messageDisplay.textContent = 'WRONG!';
     messageDisplay.classList.add('red');
+    scoreWrong++;
+    scoreWrongDisplay.textContent = scoreWrong;
   }
   })
 }
