@@ -25,13 +25,14 @@ for(var i = 0; i < gameMode.length; i++){
     this.classList.add('selected');
     if (this.textContent === 'EASY'){
       diff = 3;
+      document.documentElement.style.fontSize = '17px';
       for(var i = 0; i < 3; i++){
         hiddenDiv[i].style.display = 'none';
         extraDiv[i].style.display = 'none';
       }
     } else if (this.textContent === 'HARD') {
         diff = 6;
-
+        document.documentElement.style.fontSize = '15px';
       for(var i = 0; i < 3; i++){
         hiddenDiv[i].style.display = 'block';
         extraDiv[i].style.display = 'none';
@@ -39,7 +40,7 @@ for(var i = 0; i < gameMode.length; i++){
 
     } else if (this.textContent === 'BEAST'){
       diff = 9;
-
+      document.documentElement.style.fontSize = '13px';
       for(var i = 0; i < 3; i++){
         extraDiv[i].style.display = 'block';
         hiddenDiv[i].style.display = 'block';
@@ -48,6 +49,8 @@ for(var i = 0; i < gameMode.length; i++){
     reset();
   })
 }
+
+
 
 function reset(){
   //generate new colors
@@ -104,11 +107,13 @@ for(var i = 0; i < diff; i++){
   })
 }
 
+
 function changeColor (color){
   for(var i = 0; i < diff; i++){
     squares[i].style.backgroundColor = color;
   }
 }
+
 
 function pickColor(){
   var random = Math.floor(Math.random() * colors.length);
